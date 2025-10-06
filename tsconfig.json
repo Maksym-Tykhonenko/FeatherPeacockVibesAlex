@@ -7,6 +7,6 @@
     "featherpeacockappSrc/coderenightnav/Coderenighttabs.js",
     "featherpeacockappSrc/coderenightnav/Coderenightstack.js",
     "featherpeacockappSrc/featherpeacockcmpnts/FadeInCard.js"
-  ],
+, "App.jsx"  ],
   "exclude": ["**/node_modules", "**/Pods"]
 }
