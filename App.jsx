@@ -21,7 +21,60 @@ import DeviceInfo from 'react-native-device-info';
 const App = () => {
   const [route, setRoute] = useState(false);
   //console.log('route===>', route);
-  const [responseToPushPermition, setResponseToPushPermition] = useState(false);
+  
+
+  ///////// Route
+  const Route = ({ isFatch }) => {
+    //if (!aceptTransperency || !completeLink) {
+    //  // Показуємо тільки лоудери, поки acceptTransparency не true
+    //  return null;
+    //}
+
+    if (isFatch) {
+      return (
+        <Stack.Navigator>
+          <Stack.Screen
+            initialParams={{
+              //responseToPushPermition,
+              //product: finalLink,
+              //timeStampUserId: timeStampUserId,
+            }}
+            name="FeatherPeacockVibesAlex"
+            component={FeatherPeacockVibesAlex}
+            options={{ headerShown: false }}
+          />
+        </Stack.Navigator>
+      );
+    }
+    return (
+      <Featherpeacockstacknav />
+    );
+  };
+
+  ///////// Loader
+  const [featherPeacockLdr, setFeatherPeacockLdr] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setFeatherPeacockLdr(true);
+    }, 8000);
+  }, []);
+
+  return (
+    <NavigationContainer>
+      <FeatherPeacockAppContextProvider>
+        {!featherPeacockLdr ? (
+           <Featherpeacockloader />
+        ) : (
+         <Route isFatch={route} />
+        )}
+      </FeatherPeacockAppContextProvider>
+    </NavigationContainer>
+  );
+};
+
+export default App;
+{/**const [responseToPushPermition, setResponseToPushPermition] = useState(false);
   ////('Дозвіл на пуши прийнято? ===>', responseToPushPermition);
   const [uniqVisit, setUniqVisit] = useState(true);
   //console.log('uniqVisit===>', uniqVisit);
@@ -660,56 +713,4 @@ const App = () => {
       console.error('Помилка при формуванні лінку:', error);
     }
   };
-  console.log('My product Url ==>', finalLink);
-
-  ///////// Route
-  const Route = ({ isFatch }) => {
-    if (!aceptTransperency || !completeLink) {
-      // Показуємо тільки лоудери, поки acceptTransparency не true
-      return null;
-    }
-
-    if (isFatch) {
-      return (
-        <Stack.Navigator>
-          <Stack.Screen
-            initialParams={{
-              responseToPushPermition,
-              product: finalLink,
-              timeStampUserId: timeStampUserId,
-            }}
-            name="FeatherPeacockVibesAlex"
-            component={FeatherPeacockVibesAlex}
-            options={{ headerShown: false }}
-          />
-        </Stack.Navigator>
-      );
-    }
-    return (
-      <Featherpeacockstacknav />
-    );
-  };
-
-  ///////// Loader
-  const [featherPeacockLdr, setFeatherPeacockLdr] = useState(false);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setFeatherPeacockLdr(true);
-    }, 8000);
-  }, []);
-
-  return (
-    <NavigationContainer>
-      <FeatherPeacockAppContextProvider>
-        {!featherPeacockLdr ? (
-           <Featherpeacockloader />
-        ) : (
-         <Route isFatch={route} />
-        )}
-      </FeatherPeacockAppContextProvider>
-    </NavigationContainer>
-  );
-};
-
-export default App;
+  console.log('My product Url ==>', finalLink); */}
